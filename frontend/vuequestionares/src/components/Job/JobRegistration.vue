@@ -2,12 +2,12 @@
  <div>
    <v-card class="mb-3">
         <v-card-text>
-          <div>{{ typeof steps }}</div>
+          <!-- <div>{{ typeof maxSteps }}</div> -->
   
           <v-text-field
-            :value="steps"
-            hint="This demo has a maximum of 6 steps"
-            label="# of steps"
+            :value="maxSteps"
+            hint="What type of job would you like to register?"
+            label="# of maxSteps"
             max="6"
             min="1"
             persistent-hint
@@ -16,11 +16,11 @@
           ></v-text-field>
         </v-card-text>
       </v-card>
-      <v-stepper v-model="e1">
+      <v-stepper v-model="currentStep">
         <v-stepper-header>
-          <template v-for="n in steps">
+          <template v-for="n in maxSteps">
             <v-stepper-step
-              :complete="e1 > n"
+              :complete="currentStep > n"
               :key="`${n}-step`"
               :step="n"
               editable
@@ -29,7 +29,7 @@
             </v-stepper-step>
   
             <v-divider
-              v-if="n !== steps"
+              v-if="n !== maxSteps"
               :key="n"
             ></v-divider>
           </template>
@@ -37,16 +37,19 @@
   
         <v-stepper-items>
           <v-stepper-content
-            v-for="n in steps"
+            v-for="n in maxSteps"
             :key="`${n}-content`"
             :step="n"
           >
-            <v-card
+            <!-- <v-card
               class="mb-5"
               color="grey lighten-1"
               height="200px"
-            ></v-card>
-  
+            >
+          
+            </v-card> -->
+            <Step1 />
+
             <v-btn
               color="primary"
               @click="nextStep(n)"
@@ -62,35 +65,44 @@
 </template>
 
 <script>
+  import Step1 from './Step1'
+  import StepContent from './StepContent'
+
   export default {
     name: "JobRegistration",
-     data () {
-    return {
-      e1: 1,
-      steps: 2
-    }
-  },
-
-  watch: {
-    steps (val) {
-      if (this.e1 > val) {
-        this.e1 = val
+    components: {Step1, StepContent},
+    data () {
+      return {
+        currentStep: 1,
+        maxSteps: 2,
+        steps:[],
+        elements: [
+          { type: 'Step1'}
+        ]
       }
-    }
-  },
-
-  methods: {
-    onInput (val) {
-      this.steps = parseInt(val)
     },
-    nextStep (n) {
-      if (n === this.steps) {
-        this.e1 = 1
-      } else {
-        this.e1 = n + 1
+
+    watch: {
+      maxSteps (val) {
+        if (this.currentStep > val) {
+          this.currentStep = val
+        }
+      }
+    },
+
+    methods: {
+      onInput (val) {
+        this.maxSteps = parseInt(val)
+      },
+      nextStep (n) {
+        if (n === this.maxSteps) {
+          this.currentStep = 1
+        } else {
+          this.currentStep = n + 1
+          
+        }
       }
     }
-  }
   }
 </script>
 
