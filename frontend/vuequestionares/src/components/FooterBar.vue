@@ -1,6 +1,6 @@
 <template>
  <v-footer :fixed="fixed" app>
-    <img src="@/assets/logo.png" alt="Vuetify.js" class="vue-img">
+    <img src="@/assets/logo.svg" alt="Vuetify.js" class="vue-img">
     <span>Vue Questionares &copy; {{new Date().getFullYear()}}</span>
     <v-spacer></v-spacer>
     <blockquote >

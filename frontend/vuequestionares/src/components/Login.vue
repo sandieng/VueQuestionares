@@ -45,7 +45,7 @@
             fixed: false,
             password: null,
             email: '',
-            showSnackar: false,
+            showSnackbar: false,
             message: '',
             emailError: false,
             validEmailError: false,

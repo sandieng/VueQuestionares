@@ -19,6 +19,7 @@
         name: 'Step2',
          data() {
             return {
+                title: 'There',
                 jobType: ['Small', 'Medium', 'Large', 'Mega']
             }
         }

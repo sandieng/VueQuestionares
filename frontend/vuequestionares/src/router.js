@@ -14,12 +14,12 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'home',
+      name: 'Home',
       component: Home
     },
     {
       path: '/about',
-      name: 'about',
+      name: 'About',
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
@@ -35,7 +35,7 @@ export default new Router({
     },
     {
       path: '/job/registration',
-      name: 'jobRegistration',
+      name: 'JobRegistration',
       component: JobRegistration
     },
   ]
