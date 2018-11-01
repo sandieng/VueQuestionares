@@ -1,14 +1,19 @@
 <template>
  <div>
+    <v-snackbar v-model="showSnackbar" :timeout="3000" :top="true">
+      {{ message }}
+      <v-btn color="pink" flat @click="showSnackbar = false">
+        Close
+      </v-btn>
+    </v-snackbar>
+
    <v-card class="mb-3">
     <v-card-text>
       <!-- <div>{{ typeof maxSteps }}</div> -->
 
       <v-text-field
-        :hint="showCurrentStepWellHint"
         :label="showProgress"
-        max="6"
-        min="1"
+        :hint="showCurrentStepWellHint"
         persistent-hint
         type="number"
       ></v-text-field>
@@ -24,7 +29,7 @@
             :step="n"
             editable
           >
-            Step {{ n }} - {{showCurrentStepWellHint}}
+            Step {{ n }} - {{stepWells[n - 1]}}
           </v-stepper-step>
 
           <v-divider
@@ -56,13 +61,19 @@
             Previous
           </v-btn>
 
-          <v-btn
+          <v-btn v-if="n < maxSteps"
             color="primary"
             @click="nextStep(n)"
           >
             Next
           </v-btn>
 
+          <v-btn v-if="n === maxSteps"
+            color="red"
+            @click="finaliseStep(n)"
+          >
+            Finish
+          </v-btn>
         </v-stepper-content>
       </v-stepper-items>
     </v-stepper>
@@ -82,7 +93,9 @@
         currentStep: 1,
         maxSteps: 2,
         stepProgressText: '',
-        stepWells:['What type of job would you like to register?', 'What kind of size of the job?'],
+        stepWells:['What type of job would you like to register?', 'What is the size of the job?'],
+        showSnackbar: false,
+        message: ''
       }
     },
 
@@ -95,9 +108,6 @@
     },
 
     methods: {
-      // onInput (val) {
-      //   this.maxSteps = parseInt(val)
-      // },
       nextStep (n) {
         if (n === this.maxSteps) {
           this.currentStep = 1
@@ -111,6 +121,10 @@
         } else {
           this.currentStep = n - 1
         }
+      },
+      finaliseStep() {
+        this.showSnackbar = true;
+        this.message = 'Processing job registration'
       }
     },
 

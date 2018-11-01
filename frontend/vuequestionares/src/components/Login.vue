@@ -5,7 +5,7 @@
           <v-flex xs12 sm8 md4>
             
             <v-snackbar v-model="showSnackbar" :timeout="6000" :top="true">
-              {{ showInfo }}
+              {{ message }}
               <v-btn color="pink" flat @click="showSnackbar = false">
                 Close
               </v-btn>
@@ -45,15 +45,15 @@
             fixed: false,
             password: null,
             email: '',
-            showSnackbar: false,
-            showInfo: '',
+            showSnackar: false,
+            message: '',
             emailError: false,
             validEmailError: false,
             passwordError: false
         }
       },
       methods: {
-        login(e) {
+        login() {
           this.$store.dispatch('login');
           this.$router.push('/job/registration');
         }
