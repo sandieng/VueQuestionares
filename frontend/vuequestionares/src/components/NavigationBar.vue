@@ -57,12 +57,12 @@
       return {
           jobMenu: [
               { title: 'Register a New Job', route: '/Job/Registration' },
-              { title: 'xyz ...', route: '/Job/XYZ' },
+              { title: 'xyz ...', route: '/Welcome' },
 
             ],
           caseMenu: [
             { title: 'Create New Case', route: '/Case/Create' },
-            { title: 'xyz ...', route: '/Case/XYZ' },
+            { title: 'xyz ...', route: '/Welcome' },
           ],
       }
     },

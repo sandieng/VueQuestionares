@@ -1,24 +1,25 @@
 <template>
-    <div style="padding: 2rem 3rem; text-align: left;">
-       <select v-model="selected">
-            <option disabled value="">Please select one</option>
-            <option>Building</option>
-            <option>Makesafe</option>
-            <option>RestorX</option>
-            <option>Shopfit</option>
-            <option>Trump</option>
-        </select>
-        <span>Selected: {{ selected }}</span>
-    </div>
+   <v-container id="jobTypeDropdown" grid-list-xl>
+      <v-layout row wrap>
+        <v-flex>
+          <p>Job Type</p>
+  
+          <v-overflow-btn
+            :items="jobType"
+            label="Please select a job type"
+            target="#jobTypeDropdown"
+          ></v-overflow-btn>
+        </v-flex>
+      </v-layout>
+   </v-container>
 </template>
 
 <script>
-    import StepContent from './StepContent'
     export default {
         name: 'Step1',
         data() {
             return {
-            selected: ''
+                jobType: ['Building', 'Makesafe', 'RestorX', 'Shopfit', 'Trump']
             }
         }
     }
