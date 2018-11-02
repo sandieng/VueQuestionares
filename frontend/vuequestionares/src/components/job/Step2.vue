@@ -1,13 +1,14 @@
 <template>
-     <v-container id="jobSizeDropdown" grid-list-xl>
+     <v-container id="jobSize" grid-list-xl>
       <v-layout row wrap>
         <v-flex>
           <p>Job Size</p>
   
           <v-overflow-btn
-            :items="jobType"
+            :items="jobSizes"
             label="Please select a job size"
-            target="#jobSizeDropdown"
+            target="#jobSize"
+
           ></v-overflow-btn>
         </v-flex>
       </v-layout>
@@ -20,7 +21,7 @@
          data() {
             return {
                 title: 'There',
-                jobType: ['Small', 'Medium', 'Large', 'Mega']
+                jobSizes: ['Small', 'Medium', 'Large', 'Mega'],
             }
         }
     }

@@ -5,7 +5,7 @@
           <p>Job Type</p>
   
           <v-overflow-btn
-            :items="jobType"
+            :items="jobTypes"
             label="Please select a job type"
             target="#jobTypeDropdown"
           ></v-overflow-btn>
@@ -20,7 +20,7 @@
         data() {
             return {
                 title: 'Hi',
-                jobType: ['Building', 'Makesafe', 'RestorX', 'Shopfit', 'Trump']
+                jobTypes: ['Building', 'Makesafe', 'RestorX', 'Shopfit', 'Trump']
             }
         }
     }

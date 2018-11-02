@@ -38,9 +38,10 @@
         <v-stepper-content v-for="n in maxSteps" :key="`${n}-content`" :step="n">
 
           <!-- Job Registration steps -->
-          <v-card class="mb-5" color="grey lighten-3" height="200px">
+          <v-card class="mb-5" color="grey lighten-3">
             <Step1 v-if="n === 1"/>
             <Step2 v-if="n === 2"/>
+            <Step3 v-if="n === 3"/>
           </v-card>
           
           <!-- Navigation buttons -->
@@ -56,15 +57,16 @@
 <script>
   import Step1 from './Step1'
   import Step2 from './Step2'
+  import Step3 from './Step3'
 
   export default {
     name: "JobRegistration",
-    components: {Step1, Step2},
+    components: {Step1, Step2, Step3},
     data () {
       return {
         currentStep: 1,
-        maxSteps: 2,
-        stepWells:['What type of job would you like to register?', 'What is the size of the job?'],
+        maxSteps: 3,
+        stepWells:['What type of job would you like to register?', 'What is the size of the job?', 'Whos is the insurer?'],
         showSnackbar: false,
         message: ''
       }
