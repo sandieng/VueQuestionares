@@ -8,7 +8,8 @@
             :items="jobSizes"
             label="Please select a job size"
             target="#jobSize"
-
+            v-model="selectedJobSize"
+            @click="skipStep3"
           ></v-overflow-btn>
         </v-flex>
       </v-layout>
@@ -22,6 +23,19 @@
             return {
                 title: 'There',
                 jobSizes: ['Small', 'Medium', 'Large', 'Mega'],
+                skipStep3Flag: false,
+                selectedJobSize: ''
+            }
+        },
+        methods: {
+            skipStep3() {
+                this.skipStep3Flag = true;
+            }
+        },
+        watch: {
+            selectedJobSize(val) {
+                console.log(val)
+                this.$emit('selectedJobSize', val)
             }
         }
     }

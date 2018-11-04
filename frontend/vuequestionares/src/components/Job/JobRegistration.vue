@@ -40,8 +40,9 @@
           <!-- Job Registration steps -->
           <v-card class="mb-5" color="grey lighten-3">
             <Step1 v-if="n === 1"/>
-            <Step2 v-if="n === 2"/>
-            <Step3 v-if="n === 3"/>
+            <Step2 v-if="n === 2" @selectedJobSize="checkJobSize"/>
+            <Step3 v-if="n === 3 && !skipStep3Flag"/>
+            <Step4 v-if="n === 4"/>
           </v-card>
           
           <!-- Navigation buttons -->
@@ -58,17 +59,19 @@
   import Step1 from './Step1'
   import Step2 from './Step2'
   import Step3 from './Step3'
+  import Step4 from './Step4'
 
   export default {
     name: "JobRegistration",
-    components: {Step1, Step2, Step3},
+    components: {Step1, Step2, Step3, Step4},
     data () {
       return {
         currentStep: 1,
-        maxSteps: 3,
-        stepWells:['What type of job would you like to register?', 'What is the size of the job?', 'Whos is the insurer?'],
+        maxSteps: 4,
+        stepWells:['What type of job would you like to register?', 'What is the size of the job?', 'Whos is the insurer?', 'Job Summary'],
         showSnackbar: false,
-        message: ''
+        message: '',
+        skipStep3Flag: false
       }
     },
 
@@ -85,19 +88,26 @@
         if (n === this.maxSteps) {
           this.currentStep = 1
         } else {
-          this.currentStep = n + 1
+            this.currentStep = n + 1
         }
       },
       prevStep(n) {
-         if (n === 1) {
+        if (n === 1) {
           this.currentStep = this.maxSteps
         } else {
           this.currentStep = n - 1
         }
+
       },
       finaliseStep() {
         this.showSnackbar = true
         this.message = 'Processing job registration'
+      },
+      checkJobSize(val) {
+        if (val === 'Small')
+          this.skipStep3Flag = true;
+        else
+          this.skipStep3Flag = false;
       }
     },
 

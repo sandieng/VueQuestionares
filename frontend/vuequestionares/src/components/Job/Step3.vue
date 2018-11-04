@@ -22,6 +22,10 @@
             label="Please select a contact"
             target="#insuranceDetails"
           ></v-overflow-btn>
+
+          <p>Additional Notes</p>
+          <v-text-field v-model="notes">
+          </v-text-field>
         </v-flex>
       </v-layout>
    </v-container>
@@ -35,8 +39,13 @@
                 title: 'There',
                 insuranceCompanies: ['Adventege', 'IAG', 'Suncorp'],
                 insuranceContacts: ['Jack', 'Jill', 'Peter', 'Paul', 'Anna'],
-                insuranceContactNumbers: ['0400 220 110', '0411 234 567', '0422 777 888', '0413 304 403', '0499 800 177']
+                insuranceContactNumbers: ['0400 220 110', '0411 234 567', '0422 777 888', '0413 304 403', '0499 800 177'],
+                notes: '',
             }
+        },
+
+        methods: {
+
         }
     }
 </script>
