@@ -39,9 +39,14 @@
 
           <!-- Job Registration steps -->
           <v-card class="mb-5" color="grey lighten-3">
-            <Step1 v-if="n === 1"/>
-            <Step2 v-if="n === 2" @selectedJobSize="checkJobSize"/>
-            <Step3 v-if="n === 3 && !skipStep3Flag"/>
+            <Step1 v-if="n === 1" @selectedJobType="handleJobType"/>
+            <Step2 v-if="n === 2" @selectedJobSize="handleJobSize"/>
+            <Step3 v-if="n === 3 && !skipStep3Flag" 
+              @selectedInsuranceCompany="handleInsuranceCompany" 
+              @selectedInsuranceContact="handleInsuranceContact"
+              @selectedInsuranceContactNumber="handleInsuranceContactNumber"
+              @notes="handleInsuranceNotes"
+              />
             <Step4 v-if="n === 4"/>
           </v-card>
           
@@ -91,6 +96,7 @@
             this.currentStep = n + 1
         }
       },
+
       prevStep(n) {
         if (n === 1) {
           this.currentStep = this.maxSteps
@@ -99,15 +105,38 @@
         }
 
       },
+
       finaliseStep() {
         this.showSnackbar = true
         this.message = 'Processing job registration'
       },
-      checkJobSize(val) {
+
+      handleJobType(val) {
+        this.$store.dispatch('maintainJobRegistration', { 'key': `jobRegistration-step1-jobType`, 'value' : val, 'label': 'Job Type' })
+      },
+
+      handleJobSize(val) {
+        this.$store.dispatch('maintainJobRegistration', { 'key': `jobRegistration-step2-jobSize`, 'value' : val, 'label': 'Job Size' })
         if (val === 'Small')
           this.skipStep3Flag = true;
         else
           this.skipStep3Flag = false;
+      },
+
+      handleInsuranceCompany(val) {
+         this.$store.dispatch('maintainJobRegistration', { 'key': `jobRegistration-step3-insuranceCompany`, 'value' : val, 'label': 'Insurance Company' })
+      },
+
+      handleInsuranceContact(val) {
+         this.$store.dispatch('maintainJobRegistration', { 'key': `jobRegistration-step3-insuranceContact`, 'value' : val, 'label': 'Insurance Contact' })
+      },
+
+      handleInsuranceContactNumber(val) {
+         this.$store.dispatch('maintainJobRegistration', { 'key': `jobRegistration-step3-insuranceContactNumber`, 'value' : val, 'label': 'Insurance Contact Number' })
+      },
+
+      handleInsuranceNotes(val) {
+         this.$store.dispatch('maintainJobRegistration', { 'key': `jobRegistration-step3-insuranceNotes`, 'value' : val, 'label': 'Notes' })
       }
     },
 

@@ -7,6 +7,7 @@
             :items="insuranceCompanies"
             label="Please select an insurance company"
             target="#insuranceDetails"
+            v-model="selectedInsuranceCompany"
           ></v-overflow-btn>
 
           <p>Insurance Contact</p>
@@ -14,6 +15,7 @@
             :items="insuranceContacts"
             label="Please select a contact"
             target="#insuranceDetails"
+            v-model="selectedInsuranceContact"
           ></v-overflow-btn>
 
           <p>Contact Number</p>
@@ -21,6 +23,7 @@
             :items="insuranceContactNumbers"
             label="Please select a contact"
             target="#insuranceDetails"
+            v-model="selectedInsuranceContactNumber"
           ></v-overflow-btn>
 
           <p>Additional Notes</p>
@@ -41,11 +44,28 @@
                 insuranceContacts: ['Jack', 'Jill', 'Peter', 'Paul', 'Anna'],
                 insuranceContactNumbers: ['0400 220 110', '0411 234 567', '0422 777 888', '0413 304 403', '0499 800 177'],
                 notes: '',
+                selectedInsuranceCompany: '',
+                selectedInsuranceContact: '',
+                selectedInsuranceContactNumber: '',
             }
         },
 
-        methods: {
+        watch: {
+          selectedInsuranceCompany(val) {
+            this.$emit('selectedInsuranceCompany', val)
+          },
 
+          selectedInsuranceContact(val) {
+            this.$emit('selectedInsuranceContact', val)
+          },
+
+          selectedInsuranceContactNumber(val) {
+            this.$emit('selectedInsuranceContactNumber', val)
+          },
+
+          notes(val) {
+            this.$emit('notes', val)
+          }
         }
     }
 </script>

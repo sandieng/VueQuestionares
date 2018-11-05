@@ -8,6 +8,7 @@
             :items="jobTypes"
             label="Please select a job type"
             target="#jobTypeDropdown"
+            v-model="selectedJobType"
           ></v-overflow-btn>
         </v-flex>
       </v-layout>
@@ -20,7 +21,13 @@
         data() {
             return {
                 title: 'Hi',
-                jobTypes: ['Building', 'Makesafe', 'RestorX', 'Shopfit', 'Trump']
+                jobTypes: ['Building', 'Makesafe', 'RestorX', 'Shopfit', 'Trump'],
+                selectedJobType: ''
+            }
+        },
+        watch: {
+            selectedJobType(val) {
+                this.$emit('selectedJobType', val)
             }
         }
     }
